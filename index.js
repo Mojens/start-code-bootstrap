@@ -11,6 +11,7 @@ import {load as loadV2} from "./pages/page1/cars.js"
 
 window.addEventListener("load", async () => {
     const templateHome = await loadHtml("./pages/homePage/homePage.html")
+    const template404Error = await loadHtml("./pages/error/404.html")
     const templatePage1 = await loadHtml("./pages/page1/page1.html")
     const templatePage2 = await loadHtml("./pages/page2/page2.html")
     const templatePage3 = await loadHtml("./pages/page3/page3.html")
@@ -44,7 +45,7 @@ window.addEventListener("load", async () => {
                 renderTemplate(templatePage4, "content")
             }
         })
-        .notFound(() => renderTemplate("No page for this route found", "content"))
+        .notFound(() => renderTemplate(template404Error, "content"))
         .resolve()
 });
 
