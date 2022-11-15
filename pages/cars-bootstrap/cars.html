@@ -1,18 +1,21 @@
 <div class="template">
   <div class="table-responsive">
-    <table class="table">
-      <thead>
+    <h1 class="h1-margin">
+      Table Name
+    </h1>
+    <table class="table table-striped" style="border-radius: 10px;border: 10px">
+      <thead class="customThead">
         <tr>
-          <th>#</th>
-          <th><a id="header-brand" href="">Brand</a></th>
-          <th>model</th>
-          <th>Color</th>
-          <th>Kilometers</th>
+          <th scope="col">#</th>
+          <th scope="col"><a id="header-brand" href="">col1</a></th>
+          <th scope="col">col2</th>
+          <th scope="col">col3</th>
+          <th scope="col">col4</th>
         </tr>
       </thead>
       <tbody id="tbody">
       </tbody>
     </table>
   </div>
-  <ul id="car-paginator" class="pagination justify-content-center" style="margin-top:10px;"></ul>
+  <ul id="car-paginator" class="pagination pagination-lg justify-content-center"></ul>
 </div>

@@ -1,0 +1,37 @@
+:root{
+    --bs-link-color: black !important;
+    --bs-link-hover-color: white !important;
+}
+.nav-link.active{
+    color: black;
+}
+.nav-link{
+    color: white;
+    font-size: larger;
+}
+.navbar-brand{
+    color: white;
+    font-size: larger;
+}
+.h1-margin{
+    margin:2%;
+}
+.customThead{
+    background-color: tan;
+    border-radius: 10px;
+    color: white;
+}
+.customThead a{
+    color: white;
+}
+.pagination{
+    margin-top: 1%;
+}
+.active > .page-link, .page-link.active{
+    background-color: tan;
+    border-color: tan;
+}
+.page-link:hover{
+    background-color: tan;
+    border-color: tan;
+}
