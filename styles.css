@@ -14,7 +14,19 @@
     font-size: larger;
 }
 .h1-margin{
-    margin:2%;
+    margin-top:2%;
+    margin-right:2%;
+    margin-bottom:2%;
+}
+.h2-margin{
+    margin-top:2%;
+    margin-right:2%;
+    margin-bottom:2%;
+}
+.h3-margin{
+    margin-top:2%;
+    margin-right:2%;
+    margin-bottom:2%;
 }
 .customThead{
     background-color: tan;
