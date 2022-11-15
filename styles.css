@@ -23,6 +23,7 @@
 }
 .customThead a{
     color: white;
+    text-decoration: none;
 }
 .pagination{
     margin-top: 1%;
