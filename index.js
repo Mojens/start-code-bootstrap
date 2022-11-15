@@ -7,7 +7,8 @@ import {
 
 } from "./utils.js"
 
-import {load as loadV2} from "./pages/page1/cars.js"
+import {load as loadV1} from "./pages/page1/page1.js"
+import {load as loadV2} from "./pages/page2/page2.js"
 
 window.addEventListener("load", async () => {
     const templateHome = await loadHtml("./pages/homePage/homePage.html")
@@ -32,10 +33,11 @@ window.addEventListener("load", async () => {
             "/": () => renderTemplate(templateHome, "content"),
             "/page1": (match) => {
                 renderTemplate(templatePage1, "content")
-                loadV2(1, match)
+                loadV1(1, match)
             },
             "/page2": (match) => {
                 renderTemplate(templatePage2, "content")
+                loadV2(match)
             },
             "/page3": (match) => {
                 renderTemplate(templatePage3, "content")

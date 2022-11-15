@@ -1,13 +1,14 @@
-const SERVER_URL = "http://localhost:3000/"
+import {URL1 as SERVER_URL} from "../../settings.js";
+
 import { paginator } from "../../lib/paginator/paginate-bootstrap.js"
 import { sanitizeStringWithTableRows } from "../../utils.js"
 const SIZE = 10
 const TOTAL = Math.ceil(1000 / SIZE)  //Should come from the backend
 //useBootStrap(true)
 
-const navigoRoute = "cars-v2"
+const navigoRoute = "page1"
 
-let cars = [];
+let page1 = [];
 
 let sortField;
 let sortOrder = "desc"
@@ -34,12 +35,12 @@ export async function load(pg, match) {
 
   let queryString = `?_sort=${sortField}&_order=${sortOrder}&_limit=${SIZE}&_page=` + (pageNo - 1)
   try {
-    cars = await fetch(`${SERVER_URL}cars${queryString}`)
+    page1 = await fetch(`${SERVER_URL}cars${queryString}`)
       .then(res => res.json())
   } catch (e) {
     console.error(e)
   }
-  const rows = cars.map(car => `
+  const rows = page1.map(car => `
   <tr>
     <td>${car.id}</td>
     <td>${car.brand}</td>

@@ -1,50 +1,70 @@
-:root{
+:root {
     --bs-link-color: black !important;
     --bs-link-hover-color: white !important;
 }
-.nav-link.active{
+
+.nav-link.active {
     color: black;
 }
-.nav-link{
+
+.nav-link {
     color: white;
     font-size: larger;
 }
-.navbar-brand{
+
+.navbar-brand {
     color: white;
     font-size: larger;
 }
-.h1-margin{
-    margin-top:2%;
-    margin-right:2%;
-    margin-bottom:2%;
+
+.h1-margin {
+    margin-top: 2%;
+    margin-right: 2%;
+    margin-bottom: 2%;
 }
-.h2-margin{
-    margin-top:2%;
-    margin-right:2%;
-    margin-bottom:2%;
+
+.h2-margin {
+    margin-top: 2%;
+    margin-right: 2%;
+    margin-bottom: 2%;
 }
-.h3-margin{
-    margin-top:2%;
-    margin-right:2%;
-    margin-bottom:2%;
+
+.h3-margin {
+    margin-top: 2%;
+    margin-right: 2%;
+    margin-bottom: 2%;
 }
-.customThead{
+
+.customThead {
     background-color: tan;
     border-radius: 10px;
     color: white;
 }
-.customThead a{
+
+.customThead a {
     color: white;
     text-decoration: none;
 }
-.pagination{
+
+.pagination {
     margin-top: 1%;
 }
-.active > .page-link, .page-link.active{
+
+.active > .page-link, .page-link.active {
     background-color: tan;
     border-color: tan;
 }
-.page-link:hover{
+
+.page-link:hover {
     background-color: tan;
     border-color: tan;
+}
+
+.btn-primary {
+    --bs-btn-bg: tan !important;
+    --bs-btn-border-color: tan !important;
+    --bs-btn-hover-bg: tan !important;
+    --bs-btn-hover-border-color: tan !important;
+    --bs-btn-active-bg: #4a5259 !important;
+    --bs-btn-active-border-color: #4a5259 !important;
 }
