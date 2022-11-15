@@ -8,5 +8,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="bootstrap" level="application" />
+    <orderEntry type="library" name="dompurify" level="application" />
+    <orderEntry type="library" name="4b9ba14b0f" level="application" />
   </component>
 </module>
