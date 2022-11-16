@@ -35,7 +35,7 @@ export async function load(pg, match) {
 
   let queryString = `?_sort=${sortField}&_order=${sortOrder}&_limit=${SIZE}&_page=` + (pageNo - 1)
   try {
-    page1 = await fetch(`${SERVER_URL}cars${queryString}`)
+    page1 = await fetch(`${SERVER_URL}${queryString}`)
       .then(res => res.json())
   } catch (e) {
     console.error(e)
