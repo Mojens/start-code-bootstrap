@@ -2,7 +2,7 @@ import {URL1 as SERVER_URL} from "../../settings.js";
 
 import { paginator } from "../../lib/paginator/paginate-bootstrap.js"
 import { sanitizeStringWithTableRows } from "../../utils.js"
-const SIZE = 10
+const SIZE = 13
 const TOTAL = Math.ceil(1000 / SIZE)  //Should come from the backend
 //useBootStrap(true)
 
@@ -10,7 +10,7 @@ const navigoRoute = "page1"
 
 let page1 = [];
 
-let sortField;
+let sortField="model";
 let sortOrder = "desc"
 
 let initialized = false
@@ -33,10 +33,12 @@ export async function load(pg, match) {
   const p = match?.params?.page || pg  //To support Navigo
   let pageNo = Number(p)
 
-  let queryString = `?_sort=${sortField}&_order=${sortOrder}&_limit=${SIZE}&_page=` + (pageNo - 1)
+  let queryString = `?_sort=${sortField}&sort=${sortField},${sortOrder}&size=${SIZE}&page=` + (pageNo - 1)
   try {
-    page1 = await fetch(`${SERVER_URL}${queryString}`)
-      .then(res => res.json())
+    let newUrl = SERVER_URL + queryString
+    console.log("newUrl: "+ newUrl)
+    page1 = await fetch(newUrl).then(res => res.json())
+      console.log(page1)
   } catch (e) {
     console.error(e)
   }
