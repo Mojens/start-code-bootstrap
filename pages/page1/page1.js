@@ -15,9 +15,24 @@ let sortOrder = "desc"
 
 let initialized = false
 
-function handleSort(pageNo, match) {
-  sortOrder = sortOrder == "asc" ? "desc" : "asc"
-  sortField = "brand"
+function handleSort1(pageNo, match) {
+  sortOrder = sortOrder === "asc" ? "desc" : "asc"
+  sortField = document.getElementById("header-brand").innerText
+  load(pageNo, match)
+}
+function handleSort2(pageNo, match) {
+  sortOrder = sortOrder === "asc" ? "desc" : "asc"
+  sortField = document.getElementById("header-model").innerText
+  load(pageNo, match)
+}
+function handleSort3(pageNo, match) {
+  sortOrder = sortOrder === "asc" ? "desc" : "asc"
+  sortField = document.getElementById("header-color").innerText
+  load(pageNo, match)
+}
+function handleSort4(pageNo, match) {
+  sortOrder = sortOrder === "asc" ? "desc" : "asc"
+  sortField = document.getElementById("header-kilometers").innerText
   load(pageNo, match)
 }
 
@@ -26,7 +41,19 @@ export async function load(pg, match) {
   if (!initialized) {
     document.getElementById("header-brand").onclick = function (evt) {
       evt.preventDefault()
-      handleSort(pageNo, match)
+      handleSort1(pageNo, match)
+    }
+    document.getElementById("header-model").onclick = function (evt) {
+      evt.preventDefault()
+      handleSort2(pageNo, match)
+    }
+    document.getElementById("header-color").onclick = function (evt) {
+      evt.preventDefault()
+      handleSort3(pageNo, match)
+    }
+    document.getElementById("header-kilometers").onclick = function (evt) {
+      evt.preventDefault()
+      handleSort4(pageNo, match)
     }
     initialized = true
   }
