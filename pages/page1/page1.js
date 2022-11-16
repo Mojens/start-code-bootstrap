@@ -10,7 +10,7 @@ const navigoRoute = "page1"
 
 let page1 = [];
 
-let sortField="model";
+let sortField="kilometers";
 let sortOrder = "desc"
 
 let initialized = false
