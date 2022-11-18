@@ -82,3 +82,31 @@
     padding: 0 !important;
     padding-top: 8px!important;
 }
+li input {
+    border-radius: 4px;
+    width: 100px;
+}
+
+.password-container {
+    border-radius: 5px;
+    margin-left: 2em;
+}
+@media only screen and (min-width: 600px) {
+    .password-container {
+        margin-left: 50em;
+    }
+}
+.password-container input{
+    font-size: 17px;
+    border: none;
+    width: 100px;
+}
+.hover-color-tan:hover {
+    background-color: tan;
+    color: white;
+    border: black 1px solid;
+}
+#user-details{
+    color: white;
+    font-weight: bold;
+}

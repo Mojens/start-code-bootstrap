@@ -44,6 +44,15 @@
               <li class="nav-item">
                 <a class="nav-link" href="/page4" data-navigo>Page 4</a>
               </li>
+              <li id="login-container" class="password-container">
+                <input  class="block-input" id="input-user" placeholder="username">
+                <input  class="block-input" id="input-password" type="password" placeholder="password">
+                <button id="btn-login" class="btn btn-light hover-color-tan">Login</button>
+              </li>
+              <li id="logout-container" class="password-container" style="display: none;">
+                <span id="user-details"></span> &nbsp;
+                <button id="btn-logout" class="btn btn-light hover-color-tan">Logout</button>
+              </li>
             </ul>
           </div>
         </div>
@@ -58,6 +67,7 @@
     crossorigin="anonymous"></script>
   <script src="https://kit.fontawesome.com/4b9ba14b0f.js">
   </script>
+<script src="login.js" type="module"></script>
 </body>
 
 
