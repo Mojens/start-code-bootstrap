@@ -37,7 +37,7 @@ function handleSort4(pageNo, match) {
 }
 
 export async function load(pg, match) {
-  //We dont wan't to setup a new handler each time load fires
+  document.getElementById("tbody").innerHTML = sanitizeStringWithTableRows(`<tr><td colspan="5">Error: Du ikke logget ind</td></tr>`)
   if (!initialized) {
     document.getElementById("header-brand").onclick = function (evt) {
       evt.preventDefault()
@@ -63,13 +63,21 @@ export async function load(pg, match) {
   let queryString = `?_sort=${sortField}&sort=${sortField},${sortOrder}&size=${SIZE}&page=` + (pageNo - 1)
   try {
     let newUrl = SERVER_URL + queryString
-    console.log("newUrl: "+ newUrl)
-    page1 = await fetch(newUrl).then(res => res.json())
-      console.log(page1)
-  } catch (e) {
-    console.error(e)
-  }
-  const rows = page1.map(car => `
+    const options = {
+      method: "GET",
+      headers: { "Accept": "application/json" }
+    }
+    if (localStorage.getItem("token") !== null) {
+      const token = localStorage.getItem("token")
+      if (!token) {
+        alert("You must login to use this feature")
+        return
+      }
+      options.headers.Authorization = "Bearer " + token
+    }
+    page1 = await fetch(newUrl,options).then(res => res.json())
+    if (page1.length > 0) {
+      const rows = page1.map(car => `
   <tr>
     <td>${car.id}</td>
     <td>${car.brand}</td>
@@ -78,8 +86,12 @@ export async function load(pg, match) {
     <td>${car.kilometers}</td>
   `).join("")
 
+      document.getElementById("tbody").innerHTML = sanitizeStringWithTableRows(rows)
+    }
+  } catch (e) {
+    console.error(e)
+  }
 
-  document.getElementById("tbody").innerHTML = sanitizeStringWithTableRows(rows)
 
   // (C1-2) REDRAW PAGINATION
   paginator({

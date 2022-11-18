@@ -28,20 +28,20 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="topnav">
-            <ul class="nav nav-tabs" style="justify-content: center" id="unordered-list1">
-              <li class="nav-item">
+            <ul class="nav nav-tabs" style="justify-content: center" id="buttons">
+              <li class="nav-item" id="homePage">
                 <a class="nav-link active" aria-current="page" data-navigo href="/">Home</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item" id="page1" style="display: none">
                 <a class="nav-link" href="/page1" data-navigo>Page 1</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item" id="page2"  style="display: none">
                 <a class="nav-link" href="/page2" data-navigo>Page 2</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item" id="page3"  style="display: none">
                 <a class="nav-link" href="/page3" data-navigo>Page 3</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item" id="page4"  style="display: none">
                 <a class="nav-link" href="/page4" data-navigo>Page 4</a>
               </li>
               <li id="login-container" class="password-container">
@@ -49,8 +49,7 @@
                 <input  class="block-input" id="input-password" type="password" placeholder="password">
                 <button id="btn-login" class="btn btn-light hover-color-tan">Login</button>
               </li>
-              <li id="logout-container" class="password-container" style="display: none;">
-                <span id="user-details"></span> &nbsp;
+              <li id="logout-container" class="password-container">
                 <button id="btn-logout" class="btn btn-light hover-color-tan">Logout</button>
               </li>
             </ul>

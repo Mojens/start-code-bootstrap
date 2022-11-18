@@ -110,3 +110,13 @@ li input {
     color: white;
     font-weight: bold;
 }
+#logout-container{
+    margin-left: 2em;
+    display: none;
+}
+@media only screen and (min-width: 600px) {
+    #logout-container {
+        margin-left: 62em;
+        display: none;
+    }
+}

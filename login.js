@@ -1,13 +1,16 @@
 import {URL2 as AUTH_URL} from './settings.js';
+import { sanitizeStringWithTableRows } from "./utils.js"
+import{load as load1} from './pages/page1/page1.js'
+
 
 document.getElementById("btn-login").onclick = loginLogoutClick
 document.getElementById("btn-logout").onclick = loginLogoutClick
+//document.getElementById("page1").onclick = handlePage1Click()
 
 const userNameInput = document.getElementById("input-user")
 const passwordInput = document.getElementById("input-password")
 const loginContainer = document.getElementById("login-container")
 const logoutContainer = document.getElementById("logout-container")
-const userDetails = document.getElementById("user-details")
 
 async function handleHttpErrors(res) {
     if (!res.ok) {
@@ -19,11 +22,34 @@ async function handleHttpErrors(res) {
     return res.json()
 }
 
+function changeNav(){
+    const token = localStorage.getItem("token")
+    const roles = localStorage.getItem("roles")
+    if (token) {
+        if (roles.includes("ADMIN")) {
+            document.getElementById("page1").style.display = "block"
+            document.getElementById("page2").style.display = "block"
+            document.getElementById("page3").style.display = "block"
+            document.getElementById("page4").style.display = "block"
+        }else if (roles.includes("USER")) {
+            document.getElementById("page1").style.display = "block"
+            document.getElementById("page2").style.display = "none"
+            document.getElementById("page3").style.display = "none"
+            document.getElementById("page4").style.display = "none"
+        }
+    }else
+    {
+        document.getElementById("page1").style.display = "none"
+        document.getElementById("page2").style.display = "none"
+        document.getElementById("page3").style.display = "none"
+        document.getElementById("page4").style.display = "none"
+    }
+
+}
+
 function toogleLoginStatus(loggedIn) {
     loginContainer.style.display = loggedIn ? "none" : "block"
     logoutContainer.style.display = loggedIn ? "block" : "none"
-    const statusTxt = loggedIn ? `User: ${localStorage["user"]} (${localStorage["roles"]})` : ""
-    userDetails.innerText = statusTxt
 }
 
 function storeLoginDetails(res) {
@@ -56,6 +82,8 @@ async function loginLogoutClick(evt) {
         try {
             const res = await fetch(AUTH_URL + "/login", options).then(handleHttpErrors)
             storeLoginDetails(res)
+            changeNav()
+            load1()
         } catch (err) {
            console.log(err)
             if (err.apiError) {
@@ -67,5 +95,35 @@ async function loginLogoutClick(evt) {
     } else {
         //Logout was clicked
         clearLoginDetails()
+        load1()
+        changeNav()
+    }
+}
+
+async function fetchDataAndUpdateUI(url, addToken) {
+    const options = {
+        method: "GET",
+        headers: { "Accept": "application/json" }
+    }
+    if (addToken) {
+        const token = localStorage.getItem("token")
+        if (!token) {
+            alert("You must login to use this feature")
+            return
+        }
+
+        options.headers.Authorization = "Bearer " + token
+    }
+
+    try {
+        const res = await fetch(url, options).then(handleHttpErrors)
+        alert(res.info)
+    } catch (err) {
+        if (err.apiError) {
+            alert(err.apiError.message)
+        } else {
+            alert(err.message)
+        }
+
     }
 }
