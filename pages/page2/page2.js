@@ -1,4 +1,5 @@
 import {URL1 as SERVER_URL} from "../../settings.js";
+import {checkToken2} from "../../login.js";
 
 let router;
 
@@ -14,24 +15,18 @@ async function addObject(){
     const attribute3 = document.getElementById("input3").value;
     const attribute4 = document.getElementById("input4").value;
     const attribute5 = document.getElementById("input5").value;
-    const attribute6 = document.getElementById("input6").value;
 
     const object = {
-        attribute1,
-        attribute2,
-        attribute3,
-        attribute4,
-        attribute5,
-        attribute6
+        id: attribute1,
+        brand: attribute2,
+        model: attribute3,
+        color: attribute4,
+        kilometers: attribute5
     };
 
-    await fetch(SERVER_URL, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(object),
-    })
+    await fetch(SERVER_URL,await checkToken2(object))
         .then((res) => res.json())
-        .then((data) => data.id);
+        .then((data) =>
+            document.getElementById("responseText").innerHTML = 'Tilføjet bil med id: ' + data.id
+           ).then(() => window.navigate("/page1/"));
 }

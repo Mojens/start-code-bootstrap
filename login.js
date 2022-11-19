@@ -1,11 +1,9 @@
 import {URL2 as AUTH_URL} from './settings.js';
-import { sanitizeStringWithTableRows } from "./utils.js"
-import{load as load1} from './pages/page1/page1.js'
+import {load as load1} from './pages/page1/page1.js'
 
 
 document.getElementById("btn-login").onclick = loginLogoutClick
 document.getElementById("btn-logout").onclick = loginLogoutClick
-//document.getElementById("page1").onclick = handlePage1Click()
 
 const userNameInput = document.getElementById("input-user")
 const passwordInput = document.getElementById("input-password")
@@ -22,7 +20,7 @@ async function handleHttpErrors(res) {
     return res.json()
 }
 
-function changeNav(){
+function changeNav() {
     const token = localStorage.getItem("token")
     const roles = localStorage.getItem("roles")
     if (token) {
@@ -31,14 +29,13 @@ function changeNav(){
             document.getElementById("page2").style.display = "block"
             document.getElementById("page3").style.display = "block"
             document.getElementById("page4").style.display = "block"
-        }else if (roles.includes("USER")) {
+        } else if (roles.includes("USER")) {
             document.getElementById("page1").style.display = "block"
             document.getElementById("page2").style.display = "none"
             document.getElementById("page3").style.display = "none"
             document.getElementById("page4").style.display = "none"
         }
-    }else
-    {
+    } else {
         document.getElementById("page1").style.display = "none"
         document.getElementById("page2").style.display = "none"
         document.getElementById("page3").style.display = "none"
@@ -59,6 +56,7 @@ function storeLoginDetails(res) {
     //Update UI
     toogleLoginStatus(true)
 }
+
 function clearLoginDetails() {
     localStorage.removeItem("token")
     localStorage.removeItem("user")
@@ -66,6 +64,7 @@ function clearLoginDetails() {
     //Update UI
     toogleLoginStatus(false)
 }
+
 async function loginLogoutClick(evt) {
     evt.stopPropagation()  //prevents the event from bubling further up
     const logInWasClicked = evt.target.id === "btn-login" ? true : false
@@ -76,7 +75,7 @@ async function loginLogoutClick(evt) {
         loginRequest.password = passwordInput.value
         const options = {
             method: "POST",
-            headers: { "Content-type": "application/json" },
+            headers: {"Content-type": "application/json"},
             body: JSON.stringify(loginRequest)
         }
         try {
@@ -85,9 +84,9 @@ async function loginLogoutClick(evt) {
             changeNav()
             load1()
         } catch (err) {
-           console.log(err)
+            console.log(err)
             if (err.apiError) {
-               console.log(err.apiError.message)
+                console.log(err.apiError.message)
             } else {
                 console.log(err.message)
             }
@@ -100,30 +99,38 @@ async function loginLogoutClick(evt) {
     }
 }
 
-async function fetchDataAndUpdateUI(url, addToken) {
+export async function checkToken() {
     const options = {
         method: "GET",
-        headers: { "Accept": "application/json" }
-    }
-    if (addToken) {
+        headers: {"Accept": "application/json"}
+    };
+    if (localStorage.getItem("token") !== null) {
         const token = localStorage.getItem("token")
         if (!token) {
             alert("You must login to use this feature")
             return
         }
-
         options.headers.Authorization = "Bearer " + token
     }
+    return options;
+}
 
-    try {
-        const res = await fetch(url, options).then(handleHttpErrors)
-        alert(res.info)
-    } catch (err) {
-        if (err.apiError) {
-            alert(err.apiError.message)
-        } else {
-            alert(err.message)
+export async function checkToken2(object) {
+    const options = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify(object)
+    };
+    if (localStorage.getItem("token") !== null) {
+        const token = localStorage.getItem("token")
+        if (!token) {
+            alert("You must login to do this feature")
+            return
         }
-
+        options.headers.Authorization = "Bearer " + token
     }
+    return options;
 }

@@ -1,8 +1,20 @@
 <div class="template">
   <div class="table-responsive">
+    <button id="filter-btn"> Filter </button>
+    <button id="reset-btn"> Reset </button>
     <h1 class="h1-margin">
       Table Name
     </h1>
+    <label style="float: right;margin-top:-5%">
+      <input type="text" class="table1-input" id="column-value">
+      <select type="select" class="table1-input-right" id="column">
+        <option disabled selected value="">Vælg kolonne</option>
+        <option value="brand">Brand</option>
+        <option value="model">Model</option>
+        <option value="color">Color</option>
+        <option value="kilometers">Kilometers</option>
+      </select>
+    </label>
     <table class="table table-striped" style="border-radius: 10px;border: 10px">
       <thead class="customThead">
         <tr>
